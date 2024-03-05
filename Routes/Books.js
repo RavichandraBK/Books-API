@@ -25,10 +25,10 @@ router.post('/add-book',async(req,res)=>{
         const findBook = await books.findOne({title, author, ISBN, publicationDate})
         if(!findBook){
             const addBook = await books.create({title,author,ISBN,publicationDate});
-            res.send({message:'Successfully added the book to the database', Book:addBook});
+            res.json({message:'Successfully added the book to the database', Book:addBook});
         }
         else{
-            res.send({message:'Book already exists in the database'});
+            res.json({message:'Book already exists in the database'});
         }
     }catch(err){
         console.error('Error while adding the book',err);
