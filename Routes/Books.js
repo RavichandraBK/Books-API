@@ -28,7 +28,7 @@ router.post('/add-book',async(req,res)=>{
             res.send({message:'Successfully added the book to the database', Book:addBook});
         }
         else{
-            res.send({message:'Couldnt add book to the database'});
+            res.send({message:'Book already exists in the database'});
         }
     }catch(err){
         console.error('Error while adding the book',err);
