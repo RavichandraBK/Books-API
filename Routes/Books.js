@@ -21,13 +21,14 @@ router.get('/', async(req,res)=>{
 router.post('/add-book',async(req,res)=>{
     try{
         const {title, author, ISBN, publicationDate} = req.body;
-        // console.log(req.body)
-        const addBook = await books.create({title,author,ISBN,publicationDate});
-        if(!addBook){
-            res.send({message:'Couldnt add book to the database'});
+        
+        const findBook = await books.findOne({title, author, ISBN, publicationDate})
+        if(!findBook){
+            const addBook = await books.create({title,author,ISBN,publicationDate});
+            res.send({message:'Successfully added the book to the database', Book:addBook});
         }
         else{
-            res.send({message:'Successfully added the book to the database'});
+            res.send({message:'Couldnt add book to the database'});
         }
     }catch(err){
         console.error('Error while adding the book',err);
