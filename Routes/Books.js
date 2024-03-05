@@ -46,7 +46,7 @@ router.patch('/update-book', async (req, res) => {
         );
 
         if (!updateBook) {
-            return res.status(404).json({ message: 'Could not update the book' });
+            return res.status(404).json({ message: 'Couldnt find the book' });
         } else {
             return res.status(200).json({ message: 'Book updated successfully', Book: updateBook });
         }
