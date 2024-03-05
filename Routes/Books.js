@@ -7,10 +7,10 @@ router.get('/', async(req,res)=>{
 
         const getBooks = await books.find({});
         if(!getBooks){
-            res.status(404).send({message:'No books are found'});
+            res.status(404).json({message:'No books are found'});
         }
         else{
-            res.send({message:'Available books', books:getBooks});
+            res.json({message:'Available books', books:getBooks});
         }
     }catch(err){
         console.error('Error while fetching the books', err);
